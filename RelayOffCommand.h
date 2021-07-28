@@ -1,19 +1,19 @@
 #pragma once
-#include "constants.h"
+#include "RelaySettings.h"
 #include "IRelayCommand.h"
 #include "RelayService.h"
 
 class RelayOffCommand : public IRelayCommand
 {
   public:
-    virtual bool Execute(RelayConfig relayConfig, RelayService relayService) override;
+    virtual bool Execute(RelaySettings relaySettings, RelayService relayService) override;
     RelayOffCommand();
     ~RelayOffCommand();
 };
 
-bool RelayOffCommand::Execute(RelayConfig relayConfig, RelayService relayService)
+bool RelayOffCommand::Execute(RelaySettings relaySettings, RelayService relayService)
 {
-  int status = relayService.Status(relayConfig.address, relayConfig.statusCommand);
+  int status = relayService.Status(relaySettings.address, relaySettings.statusCommand);
   if (status == -1)
   {
     return false;
@@ -21,7 +21,7 @@ bool RelayOffCommand::Execute(RelayConfig relayConfig, RelayService relayService
 
   if (status == 15)
   {
-    relayService.Toggle(relayConfig.address, relayConfig.toggleCommand);
+    relayService.Toggle(relaySettings.address, relaySettings.toggleCommand);
   } 
   
   return true;

@@ -1,10 +1,10 @@
 #pragma once
 #include "IDeviceHandler.h"
 #include "RelayService.h"
-#include "RelayConfigMapper.h"
+#include "RelaySettingsMapper.h"
 #include "RelayCommandMapper.h"
 
-RelayConfigMapper relayConfigMapper;
+RelaySettingsMapper relaySettingsMapper;
 RelayCommandMapper relayCommandMapper;
 RelayService relayService;
 
@@ -18,16 +18,21 @@ class RelayHandler : public IDeviceHandler
 
 void RelayHandler::Handle(int i, int c)
 { 
-  RelayConfig* relayConfig = relayConfigMapper.Map(i);
-  if (relayConfig == NULL) 
+  auto relaySettings(relaySettingsMapper.Map(i));
+  if (relaySettings == NULL) 
   {
     Serial.println(RESPONSE_BAD_REQUEST);
     return;
   }
 
   auto command(relayCommandMapper.Map(c));
-
-  if (!command->Execute(*relayConfig, relayService))
+  if (command == NULL) 
+  {
+    Serial.println(RESPONSE_BAD_REQUEST);
+    return;
+  }
+  
+  if (!command->Execute(*relaySettings, relayService))
   {
     Serial.println(RESPONSE_ERROR);
   } 
@@ -36,7 +41,7 @@ void RelayHandler::Handle(int i, int c)
     Serial.println(RESPONSE_SUCCESS);   
   }
 
-  relayConfig = NULL;
+  relaySettings = NULL;
   command = NULL;
 }
 

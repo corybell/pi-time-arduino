@@ -1,16 +1,16 @@
 #pragma once
-#include "constants.h"
+#include "RelaySettings.h"
 #include "RelayService.h"
 
 class IRelayCommand
 {
   public:
-    virtual bool Execute(RelayConfig relayConfig, RelayService relayService);
+    virtual bool Execute(RelaySettings relaySettings, RelayService relayService);
     IRelayCommand();
     ~IRelayCommand();
 };
 
-bool IRelayCommand::Execute(RelayConfig relayConfig, RelayService relayService)
+bool IRelayCommand::Execute(RelaySettings relaySettings, RelayService relayService)
 {
 }
 

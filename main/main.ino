@@ -12,7 +12,7 @@ DeviceMapper deviceMapper;
 void setup() {
   Serial.begin(BAUD_RATE);
   while (!Serial) ; 
-  Serial.println(RESPONSE_SUCCESS);
+  Serial.print(RESPONSE_SUCCESS);
 }
 
 /**

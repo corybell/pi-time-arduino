@@ -31,7 +31,7 @@ void RelayHandler::Handle(int indexBit, int commandBit)
   auto relaySettings(relaySettingsMapper.Map(indexBit));
   if (relaySettings == NULL) 
   {
-    Serial.println(RESPONSE_BAD_REQUEST);
+    Serial.print(RESPONSE_BAD_REQUEST);
     return;
   }
 
@@ -39,18 +39,18 @@ void RelayHandler::Handle(int indexBit, int commandBit)
   auto command(relayCommandMapper.Map(commandBit));
   if (command == NULL) 
   {
-    Serial.println(RESPONSE_BAD_REQUEST);
+    Serial.print(RESPONSE_BAD_REQUEST);
     return;
   }
   
   // execute
   if (!command->Execute(*relaySettings, relayService))
   {
-    Serial.println(RESPONSE_ERROR);
+    Serial.print(RESPONSE_ERROR);
   } 
   else
   {
-    Serial.println(RESPONSE_SUCCESS);   
+    Serial.print(RESPONSE_SUCCESS);   
   }
 
   relaySettings = NULL;

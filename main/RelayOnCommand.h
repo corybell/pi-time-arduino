@@ -23,7 +23,7 @@ class RelayOnCommand : public IRelayCommand
 bool RelayOnCommand::Execute(RelaySettings relaySettings, RelayService relayService)
 {
   int status = relayService.Status(relaySettings.address, relaySettings.statusCommand);
-  if (status == RELAY_STATUS_OFF)
+  if (status == RELAY_STATUS_ERROR)
   {
     return false;
   }

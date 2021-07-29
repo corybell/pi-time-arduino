@@ -1,19 +1,28 @@
 #pragma once
 
+/**
+ * Relay Settings model
+ * Holds a board address, status command, and toggle command
+ */
 class RelaySettings
 {
   public:
     int address, statusCommand, toggleCommand;
-    RelaySettings(int a, int s, int t);
+    RelaySettings(int address, int statusCommand, int toggleCommand);
     ~RelaySettings();
 };
 
-
-RelaySettings::RelaySettings(int a, int s, int t)
+/**
+ * Constructor
+ * @param address board address
+ * @param statusCommand status command
+ * @param toggleCommand toggle command
+ */
+RelaySettings::RelaySettings(int address, int statusCommand, int toggleCommand)
 {
-  this->address = a;
-  this->statusCommand = s;
-  this->toggleCommand = t;
+  this->address = address;
+  this->statusCommand = statusCommand;
+  this->toggleCommand = toggleCommand;
 }
 
 RelaySettings::~RelaySettings()

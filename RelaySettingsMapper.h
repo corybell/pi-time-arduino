@@ -1,6 +1,9 @@
 #pragma once
 #include "RelaySettings.h"
 
+/**
+ * This class maps a relay index to a settings model
+ */
 class RelaySettingsMapper
 {
   public:
@@ -9,6 +12,11 @@ class RelaySettingsMapper
     ~RelaySettingsMapper();
 };
 
+/**
+ * Maps a relay index to RelaySettings
+ * @param i relay index
+ * @return RelaySettings
+ */
 RelaySettings* RelaySettingsMapper::Map(int i)
 {
   switch (i){

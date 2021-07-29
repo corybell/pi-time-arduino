@@ -1,14 +1,23 @@
 #pragma once
 
+/**
+ * Interface for device handlers 
+ */
 class IDeviceHandler
 {
   public:
-    virtual void Handle(int i, int c);
+    virtual void Handle(int indexBit, int commandBit);
     IDeviceHandler();
     ~IDeviceHandler();
 };
 
-void IDeviceHandler::Handle(int i, int c)
+/**
+ * Handles the request for the given index and command bits
+ * @param indexBit the index bit
+ * @param commandBit the command bit
+ * @return void
+ */
+void IDeviceHandler::Handle(int indexBit, int commandBit)
 {
 }
 

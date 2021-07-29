@@ -3,6 +3,9 @@
 #include "RelayOffCommand.h"
 #include "RelayOnCommand.h"
 
+/**
+ * This class is maps a command bit to a relay command
+ */
 class RelayCommandMapper
 {
   public:
@@ -11,6 +14,11 @@ class RelayCommandMapper
     ~RelayCommandMapper();
 };
 
+/**
+ * Maps a commandBit to an IRelayCommand
+ * @param commandBit the commandBit to map
+ * @return IRelayCommand
+ */
 IRelayCommand* RelayCommandMapper::Map(int commandBit)
 {
   switch (commandBit){
